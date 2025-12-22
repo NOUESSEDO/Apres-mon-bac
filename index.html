@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orientation Universitaire 2023-2024 | Bénin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --navy: #0a2540;
+            --gold: #c5a059;
+            --benin-green: #008751;
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        h1, h2, h3, .serif { font-family: 'Crimson Pro', serif; }
+        
+        .nav-link-active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+        .academic-card { transition: all 0.3s ease; border-top: 4px solid transparent; }
+        .academic-card:hover { border-top-color: var(--gold); transform: translateY(-4px); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--navy); border-radius: 10px; }
+
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header Institutionnel -->
+    <header class="bg-[#0a2540] text-white">
+        <div class="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center text-[10px] font-bold uppercase tracking-widest">
+            <div class="flex items-center space-x-4">
+                <span>Apres bac</span>
+            </div>
+            <div class="hidden md:block">Enseignement Supérieur</div>
+        </div>
+        
+        <nav class="bg-white text-slate-900 border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="showView('home')">
+                    <div class="bg-[#0a2540] p-2 rounded">
+                        <i class="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-black tracking-tighter">ORIENTATION<span class="text-green-600">BJ</span></span>
+                </div>
+                
+                <div class="hidden lg:flex space-x-8 text-xs font-bold uppercase tracking-widest">
+                    <button onclick="showView('home')" class="hover:text-gold-600 transition">Accueil</button>
+                    <button onclick="showView('calculateur')" class="hover:text-gold-600 transition">Simulateur</button>
+                    <button onclick="showView('universites')" class="hover:text-gold-600 transition">Universités</button>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button class="bg-[#c5a059] text-white px-5 py-2 rounded font-bold text-[10px] uppercase shadow-lg shadow-yellow-900/10 hover:bg-yellow-700 transition" onclick="window.location.href='1.pdf'">
+                        Guide PDF
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content (Dynamic Views) -->
+    <main id="main-content" class="min-h-screen">
+        <!-- Les vues seront injectées ici par JavaScript -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-4">
+            <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500">© 2023-2024 Bénin(Consultez le guide post-bac pour vérifier vos doutes) </p>
+            <div class="flex justify-center space-x-6 text-xs text-slate-400">
+                <a href="1.pdf">Support</a>
+                <a href="1.pdf">Filières</a>
+                <a href="1.pdf">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Store (Contenu extrait du Guide)
+        const universityData = {
+            uac: {
+                title: "Université d'Abomey-Calavi (UAC)",
+                section: "I",
+                desc: "L'institution de référence au Bénin, regroupant les facultés les plus prestigieuses et les centres de recherche les plus avancés.",
+                entities: [
+                    { name: "FSS", full: "Faculté des Sciences de la Santé", details: "Médecine, Pharmacie, Odontostomatologie." },
+                    { name: "EPAC", full: "École Polytechnique d'Abomey-Calavi", details: "Génie Civil, Informatique, Biomédical." },
+                    { name: "ENEAM", full: "École Nationale d'Économie Appliquée et de Management", details: "Statistique, Planification, Marketing." },
+                    { name: "FAST", full: "Faculté des Sciences et Techniques", details: "Maths, Physique, Chimie, Biologie." }
+                ]
+            },
+            up: {
+                title: "Université de Parakou (UP)",
+                section: "II",
+                desc: "Le pôle majeur du Nord-Bénin, réputé pour ses formations en agronomie et ses facultés de droit.",
+                entities: [
+                    { name: "FA", full: "Faculté d'Agronomie", details: "Production végétale, animale, Economie rurale." },
+                    { name: "FDSP", full: "Faculté de Droit et de Science Politique", details: "Droit public, Droit privé." },
+                    { name: "IUT", full: "Institut Universitaire de Technologie", details: "Gestion des Entreprises, Informatique de gestion." }
+                ]
+            },
+            unstim: {
+                title: "UNSTIM - Abomey",
+                section: "III",
+                desc: "Dédiée aux Sciences, Technologies, Ingénierie et Mathématiques.",
+                entities: [
+                    { name: "ENS", full: "Ecole Normale Supérieure (Natitingou)", details: "Formation des professeurs de lycée." },
+                    { name: "ENSTI", full: "Ecole Nationale Supérieure des Travaux Industriels (Lokossa)", details: "Génie Electrique, Mécanique." },
+                    { name: "INSTI", full: "Institut National Supérieur de Technologie Industrielle", details: "Maintenance, Froid et climatisation." }
+                ]
+            },
+            una: {
+                title: "Université Nationale d'Agriculture (UNA)",
+                section: "IV",
+                desc: "L'excellence pour l'avenir agricole du Bénin.",
+                entities: [
+                    { name: "EAV", full: "Ecole d'Agrobusiness et de Politiques Agricoles", details: "Kétou" },
+                    { name: "EH", full: "Ecole d'Horticulture et d'Aménagement des Espaces Verts", details: "Idigny" }
+                ]
+            },
+            iuep: {
+                title: "Institut Univ. d'Enseignement Professionnel (IUEP)",
+                section: "V",
+                desc: "Formations courtes de type BAC+2/BAC+3 orientées métiers.",
+                entities: [
+                    { name: "IUEP - Agriculture", full: "Métiers de la production et transformation.", details: "Filière pratique." },
+                    { name: "IUEP - Numérique", full: "Développement, Réseaux, Webdesign.", details: "Insertion rapide." }
+                ]
+            }
+        };
+
+        // Router / View Manager
+        function showView(viewId, params = null) {
+            const main = document.getElementById('main-content');
+            window.scrollTo(0, 0);
+
+            switch(viewId) {
+                case 'home':
+                    renderHome(main);
+                    break;
+                case 'calculateur':
+                    renderCalculateur(main);
+                    break;
+                case 'universites':
+                    renderUniversities(main);
+                    break;
+                case 'detail':
+                    renderDetail(main, params);
+                    break;
+            }
+        }
+
+        // --- View: HOME ---
+        function renderHome(container) {
+            container.innerHTML = `
+                <div class="fade-in">
+                    <div class="bg-white border-b py-20 px-6">
+                        <div class="max-w-4xl mx-auto text-center space-y-6">
+                            <h1 class="text-5xl md:text-7xl font-bold italic leading-tight">L'avenir se construit avec <span class="text-[#c5a059]">rigueur.</span></h1>
+                            <p class="text-slate-500 text-lg font-light leading-relaxed">Bienvenue sur le portail officiel de l'enseignement supérieur. Explorez les filières et simulez vos chances d'admission.</p>
+                            <div class="flex justify-center gap-4 pt-6">
+                                <button onclick="showView('universites')" class="bg-[#0a2540] text-white px-8 py-4 rounded font-bold text-xs uppercase tracking-widest">Explorer les filières</button>
+                                <button onclick="showView('calculateur')" class="border-2 border-[#0a2540] px-8 py-4 rounded font-bold text-xs uppercase tracking-widest">Simulateur de calcul</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        // --- View: CALCULATEUR ---
+        function renderCalculateur(container) {
+            container.innerHTML = `
+                <div class="fade-in max-w-7xl mx-auto px-6 py-12">
+                    <div class="grid lg:grid-cols-3 gap-12">
+                        <div class="lg:col-span-2 bg-white p-10 border-t-4 border-[#0a2540] shadow-xl rounded-b-xl">
+                            <h2 class="text-3xl font-bold mb-8 italic">Simulateur de Classement</h2>
+            <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500">(Cet exercice sert uniquement à pratiquer le calcul , les coefficients officiels se trouvent dans le guide officiel) </p>
+                            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                                <div class="space-y-2">
+                                    <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Secteur de formation</label>
+                                    <select id="typeF" class="w-full p-4 bg-slate-50 border rounded outline-none focus:border-[#c5a059]">
+                                        <option value="GEN">BAC D (K: 5, 4, 4)</option>
+                                        <option value="MED">BAC C (K: 2, 6, 5)</option>
+                                        <option value="TECH">BAC A1 (K: 5, 3, 2)</option>
+                                        <option value="MED">BAC A2 (K: 5, 4, 3)</option>
+                                        <option value="MED">BAC G2 (K: 3, 3, 5)</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Moyenne BAC (MG)</label>
+                                    <input type="number" id="mg_val" class="w-full p-4 bg-slate-50 border rounded outline-none" placeholder="00.00">
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                                <input type="number" id="n1" class="p-4 bg-slate-50 border rounded" placeholder="Note 1">
+                                <input type="number" id="n2" class="p-4 bg-slate-50 border rounded" placeholder="Note 2">
+                                <input type="number" id="n3" class="p-4 bg-slate-50 border rounded" placeholder="Note 3">
+                            </div>
+                            <button onclick="doCalc()" class="w-full bg-[#0a2540] text-white py-5 rounded font-black uppercase tracking-widest">Calculer mon score</button>
+                        </div>
+                        <div class="bg-[#0a2540] rounded-xl p-10 text-white text-center flex flex-col justify-center border-t-8 border-[#c5a059]">
+                            <div id="res-empty" class="opacity-30">Résultat affiché ici</div>
+                            <div id="res-full" class="hidden space-y-6">
+                                <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Score de Classement (MC)</div>
+                                <div id="mc-final" class="text-7xl font-bold serif text-[#c5a059]">--</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        // --- View: TOUTES LES UNIVERSITES ---
+        function renderUniversities(container) {
+            let cards = "";
+            for (let id in universityData) {
+                const u = universityData[id];
+                cards += `
+                    <div onclick="showView('detail', '${id}')" class="academic-card bg-white p-8 rounded border shadow-sm cursor-pointer">
+                        <div class="text-[10px] font-black text-slate-300 mb-2 uppercase">Section ${u.section}</div>
+                        <h3 class="text-xl font-bold mb-4 italic">${u.title}</h3>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-6">${u.desc.substring(0, 80)}...</p>
+                        <span class="text-[10px] font-bold text-[#0a2540] uppercase tracking-widest border-b border-[#0a2540] pb-1">Détails de la section</span>
+                    </div>`;
+            }
+
+            container.innerHTML = `
+                <div class="fade-in max-w-7xl mx-auto px-6 py-16">
+                    <div class="text-center mb-16 space-y-4">
+                        <h2 class="text-4xl font-bold italic">Répertoire des Institutions</h2>
+                        <div class="w-24 h-1 bg-[#c5a059] mx-auto"></div>
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        ${cards}
+                        <div class="bg-slate-100 p-8 rounded border-2 border-dashed border-slate-300 flex items-center justify-center text-center">
+                            <p class="text-xs font-bold text-slate-400 uppercase">Sections VI, VII & VIII<br>Disponibles dans le guide complet</p>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        // --- View: DETAIL UNIVERSITE ---
+        function renderDetail(container, id) {
+            const u = universityData[id];
+            if (!u) return showView('home');
+
+            let rows = "";
+            u.entities.forEach(e => {
+                rows += `
+                    <div class="p-6 border-b last:border-0 hover:bg-slate-50 transition">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+                            <div>
+                                <h4 class="font-bold text-slate-900">${e.name} - ${e.full}</h4>
+                                <p class="text-xs text-slate-500 mt-1">${e.details}</p>
+                            </div>
+                            <button class="text-[10px] font-black uppercase text-green-700 bg-green-50 px-3 py-1 rounded w-max">Filières Ouvertes</button>
+                        </div>
+                    </div>`;
+            });
+
+            container.innerHTML = `
+                <div class="fade-in">
+                    <div class="bg-white border-b py-12">
+                        <div class="max-w-7xl mx-auto px-6">
+                            <button onclick="showView('universites')" class="text-xs font-bold text-slate-400 uppercase mb-6 hover:text-black transition">
+                                <i class="fas fa-arrow-left mr-2"></i> Retour à la liste
+                            </button>
+                            <h2 class="text-4xl font-bold italic mb-4">${u.title}</h2>
+                            <p class="text-slate-500 max-w-2xl">${u.desc}</p>
+                        </div>
+                    </div>
+                    <div class="max-w-7xl mx-auto px-6 py-12">
+                        <div class="bg-white rounded shadow-xl overflow-hidden border">
+                            <div class="bg-slate-50 p-4 border-b">
+                                <h3 class="text-xs font-black uppercase tracking-widest text-slate-400">Entités de formation et écoles</h3>
+                            </div>
+                            ${rows}
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        // Logic: Calculateur
+        function doCalc() {
+            const mg = parseFloat(document.getElementById('mg_val').value) || 0;
+            const n1 = parseFloat(document.getElementById('n1').value) || 0;
+            const n2 = parseFloat(document.getElementById('n2').value) || 0;
+            const n3 = parseFloat(document.getElementById('n3').value) || 0;
+            const type = document.getElementById('typeF').value;
+
+            let k = [1, 1, 1];
+            if (type === 'MED' || type === 'TECH') k = [3, 2, 1];
+
+            if (mg > 0 && n1 > 0) {
+                const mb = (n1*k[0] + n2*k[1] + n3*k[2]) / (k[0]+k[1]+k[2]);
+                const mc = (mb + mg) / 2;
+
+                document.getElementById('res-empty').classList.add('hidden');
+                document.getElementById('res-full').classList.remove('hidden');
+                document.getElementById('mc-final').innerText = mc.toFixed(3);
+            }
+        }
+
+        // Initialisation
+        window.onload = () => showView('home');
+
+    </script>
+</body>
+</html>
