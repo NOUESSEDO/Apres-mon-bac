@@ -3,289 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Après mon Bac | Découvrir ma Vocation</title>
-    <meta name="description" content="Un guide indépendant pour aider la jeunesse béninoise à choisir son avenir après le BAC. Découvre les domaines et teste tes affinités.">
+    <title>Contact | Après mon Bac</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Outfit:wght@300;400;700&display=swap');
-        
-        :root {
-            --primary: #4f46e5;
-            --secondary: #ec4899;
-            --accent: #f59e0b;
-            --dark: #0f172a;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&family=Outfit:wght@300;400;600&display=swap');
+        :root { --primary: #4f46e5; --dark: #0f172a; }
         body { font-family: 'Outfit', sans-serif; background-color: #ffffff; color: var(--dark); }
-        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .card-vocation {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #f1f5f9;
-        }
-        .card-vocation:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary);
-        }
-
-        .nav-btn {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .nav-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-        .nav-btn:hover::after { width: 100%; }
-
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-            filter: blur(80px);
-            border-radius: 50%;
-            z-index: -1;
-        }
+        h1, h2 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .contact-card { background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%); }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="bg-slate-50 min-h-screen flex flex-col">
 
-    <div class="blob -top-20 -left-20"></div>
-    <div class="blob top-1/2 -right-20"></div>
-
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center space-x-2 cursor-pointer" onclick="showView('home')">
-                <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200">
+    <nav class="bg-white/80 backdrop-blur-md border-b border-slate-100 py-4 px-6">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white text-xs">
                     <i class="fas fa-lightbulb"></i>
                 </div>
-                <span class="text-xl font-bold tracking-tight">Aprèsmon<span class="text-indigo-600">Bac</span></span>
-            </div>
-            
-            <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600">
-                <button onclick="showView('home')" class="nav-btn py-1">Accueil</button>
-                <button onclick="showView('domaines')" class="nav-btn py-1">Explorer les Domaines</button>
-                <button onclick="showView('conseils')" class="nav-btn py-1">Comment choisir ?</button>
-            </div>
-
-            <button onclick="showView('quiz')" class="bg-indigo-600 text-white px-6 py-2.5 rounded-full text-sm font-bold shadow-md hover:bg-indigo-700 transition">
-                Test de Vocation
-            </button>
+                <span class="font-bold tracking-tight">Aprèsmon<span class="text-indigo-600">Bac</span></span>
+            </a>
+            <a href="index.html" class="text-xs font-bold text-slate-400 uppercase tracking-widest hover:text-indigo-600 transition">Accueil</a>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main id="app-viewport">
-        <!-- Views dynamic -->
+    <main class="flex-grow flex items-center justify-center p-6">
+        <div class="max-w-4xl w-full grid md:grid-cols-2 gap-8 items-center">
+            
+            <div class="space-y-6">
+                <h1 class="text-4xl font-extrabold italic leading-tight text-slate-900">
+                    Besoin d'un <span class="text-indigo-600">coup de pouce</span> ou envie de contribuer ?
+                </h1>
+                <p class="text-slate-500 leading-relaxed">
+                    Ce projet est fait par des passionnés pour la jeunesse. Si tu as une question sur ton orientation, une suggestion pour améliorer le site, ou si tu veux simplement nous dire merci, nous sommes à l'écoute !
+                </p>
+                
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-center space-x-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm">
+                        <div class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-full flex items-center justify-center">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Open Source</p>
+                            <a href="https://github.com/nouessedo/Apres-mon-bac" class="font-semibold text-sm hover:underline">github.com/nouessedo/Apres-mon-bac</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-card p-1 text-white rounded-[2rem] shadow-2xl shadow-indigo-200">
+                <div class="bg-white rounded-[1.8rem] p-8 md:p-10 text-slate-800">
+                    <h2 class="text-2xl font-bold mb-6 italic">Envoie-nous un message</h2>
+                    
+                    <form action="#" class="space-y-4" onsubmit="event.preventDefault(); document.getElementById('success-msg').classList.remove('hidden');">
+                        <div>
+                            <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest mb-2 block">Ton Nom / Pseudo</label>
+                            <input type="text" placeholder="Ex: Jean du Bénin" class="w-full p-4 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:border-indigo-500 transition">
+                        </div>
+                        
+                        <div>
+                            <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest mb-2 block">Message</label>
+                            <textarea rows="4" placeholder="Comment pouvons-nous t'aider ?" class="w-full p-4 bg-slate-50 border border-slate-100 rounded-xl outline-none focus:border-indigo-500 transition"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold uppercase text-xs tracking-[0.2em] shadow-lg shadow-indigo-100 hover:bg-indigo-700 transition">
+                            Envoyer <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+
+                        <div id="success-msg" class="hidden mt-4 p-4 bg-green-50 text-green-700 text-xs rounded-lg font-bold border border-green-100">
+                            Merci ! Comme c'est un projet communautaire, n'hésite pas à nous contacter directement sur GitHub pour une réponse plus rapide.
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-50 border-t border-slate-200 py-20 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <h3 class="text-xl font-bold mb-4">Ta réussite commence par un choix conscient.</h3>
-            <p class="text-slate-500 max-w-xl mx-auto text-sm mb-10">
-                Ce site est une initiative indépendante pour accompagner les jeunes du Bénin. Il ne remplace pas les plateformes officielles de l'État mais t'aide à mieux te connaître.
-            </p>
-            <div class="flex justify-center space-x-6 text-xs font-bold text-slate-400 uppercase tracking-widest">
-                <a href="about.html" class="hover:text-indigo-600">Le Projet</a>
-                <a href="contact.html" class="hover:text-indigo-600">Contact</a>
-                <a href="privacy.html" class="hover:text-indigo-600">Vie Privée</a>
-            </div>
-            <p class="mt-12 text-[10px] text-slate-400">© 2024 Après mon Bac. Fait avec passion pour le Bénin.</p>
-        </div>
+    <footer class="py-10 text-center">
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-[0.3em]">Ensemble pour une jeunesse éclairée</p>
     </footer>
 
-    <script>
-        const viewPort = document.getElementById('app-viewport');
-
-        function showView(view) {
-            window.scrollTo(0, 0);
-            if (view === 'home') renderHome();
-            else if (view === 'domaines') renderDomaines();
-            else if (view === 'conseils') renderConseils();
-            else if (view === 'quiz') renderQuiz();
-        }
-
-        function renderHome() {
-            viewPort.innerHTML = `
-            <div class="fade-in">
-                <!-- Hero Section -->
-                <section class="py-24 px-6 text-center lg:text-left max-w-7xl mx-auto grid lg:grid-cols-2 items-center gap-12">
-                    <div class="space-y-8">
-                        <span class="inline-block px-4 py-1.5 bg-indigo-50 text-indigo-600 rounded-full text-xs font-bold uppercase tracking-wider">Guide de Vocation Indépendant</span>
-                        <h1 class="text-5xl md:text-7xl leading-tight text-slate-900">Ne choisis pas au hasard, <span class="gradient-text">choisis ta passion.</span></h1>
-                        <p class="text-lg text-slate-500 max-w-lg leading-relaxed">
-                            Tu viens d'avoir ton BAC ? Félicitations ! Ce site est là pour t'aider à comprendre quels sont les domaines qui te correspondent vraiment avant de t'inscrire.
-                        </p>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <button onclick="showView('domaines')" class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold text-sm shadow-xl hover:bg-indigo-700 transition">Découvrir les domaines</button>
-                            <button onclick="showView('conseils')" class="border-2 border-slate-200 px-10 py-4 rounded-2xl font-bold text-sm hover:border-indigo-600 transition">Apprendre à choisir</button>
-                        </div>
-                    </div>
-                    <div class="relative">
-                        <div class="bg-indigo-100 rounded-3xl w-full aspect-square flex items-center justify-center p-8 overflow-hidden shadow-2xl">
-                            <i class="fas fa-user-graduate text-[200px] text-indigo-300 transform rotate-12"></i>
-                        </div>
-                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 hidden md:block">
-                            <div class="flex items-center space-x-4">
-                                <div class="bg-green-100 text-green-600 p-3 rounded-full"><i class="fas fa-check"></i></div>
-                                <div>
-                                    <p class="font-bold text-sm italic">+100 métiers expliqués</p>
-                                    <p class="text-[10px] text-slate-400">Pour t'inspirer</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Cards Intro -->
-                <section class="bg-slate-50 py-24 px-6">
-                    <div class="max-w-7xl mx-auto">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold mb-4 italic">Comment ça marche ?</h2>
-                            <p class="text-slate-500">Trois étapes pour y voir plus clair.</p>
-                        </div>
-                        <div class="grid md:grid-cols-3 gap-8">
-                            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100">
-                                <div class="text-indigo-600 text-3xl mb-6"><i class="fas fa-compass"></i></div>
-                                <h3 class="text-xl font-bold mb-4 italic">S'informer</h3>
-                                <p class="text-sm text-slate-500 leading-relaxed">Parcours les grands domaines (Santé, Tech, Social...) pour savoir ce qu'on y apprend réellement.</p>
-                            </div>
-                            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100">
-                                <div class="text-pink-600 text-3xl mb-6"><i class="fas fa-brain"></i></div>
-                                <h3 class="text-xl font-bold mb-4 italic">Se tester</h3>
-                                <p class="text-sm text-slate-500 leading-relaxed">Utilise notre simulateur pour voir si tes matières préférées correspondent aux domaines visés.</p>
-                            </div>
-                            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-100">
-                                <div class="text-orange-600 text-3xl mb-6"><i class="fas fa-seedling"></i></div>
-                                <h3 class="text-xl font-bold mb-4 italic">Se lancer</h3>
-                                <p class="text-sm text-slate-500 leading-relaxed">Une fois ton domaine trouvé, tu sauras vers quelle université officielle te tourner.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>`;
-        }
-
-        function renderDomaines() {
-            const domaines = [
-                { title: "Sciences de la Santé", icon: "fa-stethoscope", color: "blue", desc: "Pour ceux qui aiment soigner et sauver des vies. Médecine, Infirmerie, Pharmacie." },
-                { title: "Numérique & Tech", icon: "fa-laptop-code", color: "indigo", desc: "Le monde de demain. Programmation, Intelligence Artificielle, Réseaux." },
-                { title: "Agronomie & Environnement", icon: "fa-leaf", color: "green", desc: "Nourrir la nation et protéger la terre. Culture, Élevage, Écologie." },
-                { title: "Gestion & Économie", icon: "fa-chart-pie", color: "orange", desc: "Administrer des entreprises, gérer des banques ou créer son business." },
-                { title: "Lettres & Sciences Sociales", icon: "fa-book-open", color: "pink", desc: "Comprendre l'humain. Droit, Sociologie, Journalisme, Histoire." },
-                { title: "Ingénierie & BTP", icon: "fa-hard-hat", color: "slate", desc: "Construire des routes, des ponts et des machines." }
-            ];
-
-            let cardsHtml = domaines.map(d => `
-                <div class="card-vocation bg-white p-8 rounded-3xl">
-                    <div class="w-14 h-14 bg-${d.color}-100 text-${d.color}-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
-                        <i class="fas ${d.icon}"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4 italic">${d.title}</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed mb-6">${d.desc}</p>
-                    <button class="text-xs font-bold text-indigo-600 uppercase tracking-widest flex items-center hover:gap-2 transition-all">
-                        Explorer ce domaine <i class="fas fa-arrow-right ml-2 text-[10px]"></i>
-                    </button>
-                </div>
-            `).join('');
-
-            viewPort.innerHTML = `
-            <div class="fade-in py-20 px-6 max-w-7xl mx-auto">
-                <div class="text-center mb-20 space-y-4">
-                    <h2 class="text-4xl font-bold italic">L'univers des possibles</h2>
-                    <p class="text-slate-500 max-w-lg mx-auto">Clique sur un domaine pour comprendre ce qu'on y fait au quotidien.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    ${cardsHtml}
-                </div>
-            </div>`;
-        }
-
-        function renderConseils() {
-            viewPort.innerHTML = `
-            <div class="fade-in py-20 px-6 max-w-4xl mx-auto">
-                <h2 class="text-4xl font-bold italic mb-12 text-center">Comment bien choisir ?</h2>
-                
-                <div class="space-y-12">
-                    <div class="flex gap-6 items-start">
-                        <div class="w-12 h-12 bg-indigo-600 text-white rounded-full flex-shrink-0 flex items-center justify-center font-bold">1</div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2 italic">Identifie tes forces</h3>
-                            <p class="text-slate-500 leading-relaxed italic">Ne regarde pas seulement tes notes. Demande-toi : "Qu'est-ce que je fais sans me fatiguer ?" Est-ce que tu aimes résoudre des problèmes logiques, aider les gens, dessiner, ou organiser des projets ?</p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-6 items-start">
-                        <div class="w-12 h-12 bg-pink-600 text-white rounded-full flex-shrink-0 flex items-center justify-center font-bold">2</div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2 italic">Projete-toi dans 10 ans</h3>
-                            <p class="text-slate-500 leading-relaxed italic">Imagine ta journée de travail idéale. Es-tu dans un bureau ? Sur un chantier ? Dans un champ ? À l'hôpital ? Le choix de tes études est le premier pas vers cette réalité.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-6 items-start">
-                        <div class="w-12 h-12 bg-orange-600 text-white rounded-full flex-shrink-0 flex items-center justify-center font-bold">3</div>
-                        <div>
-                            <h3 class="text-xl font-bold mb-2 italic">Oublie la pression sociale</h3>
-                            <p class="text-slate-500 leading-relaxed italic">Beaucoup choisissent des filières "prestigieuses" pour faire plaisir aux parents. Mais c'est TOI qui vas travailler tous les jours. Choisis ce qui te fait vibrer.</p>
-                        </div>
-                    </div>
-
-                    <div class="bg-indigo-50 p-8 rounded-3xl border border-indigo-100 mt-16">
-                        <h4 class="font-bold text-indigo-900 mb-4 italic uppercase text-xs tracking-widest">Le saviez-vous ?</h4>
-                        <p class="text-indigo-800/80 text-sm leading-relaxed">
-                            Plus de 40% des étudiants changent de filière après la première année au Bénin parce qu'ils ont mal été informés. Prendre le temps de réfléchir maintenant te fait gagner des années plus tard.
-                        </p>
-                    </div>
-                </div>
-            </div>`;
-        }
-
-        function renderQuiz() {
-            viewPort.innerHTML = `
-            <div class="fade-in py-20 px-6 max-w-3xl mx-auto">
-                <div class="bg-white rounded-3xl shadow-2xl p-10 border border-slate-100 text-center">
-                    <div class="text-6xl mb-6">🎯</div>
-                    <h2 class="text-3xl font-bold italic mb-6">Mini-Test de Vocation</h2>
-                    <p class="text-slate-500 mb-10 leading-relaxed">Réponds à quelques questions pour voir quel domaine résonne avec ta personnalité.</p>
-                    
-                    <div class="space-y-4 text-left">
-                        <p class="font-bold text-sm uppercase tracking-widest text-slate-400 mb-4">Question 1</p>
-                        <h3 class="text-xl font-bold mb-8 italic italic">Pendant ton temps libre, tu préfères...</h3>
-                        
-                        <button class="w-full p-4 border-2 border-slate-100 rounded-2xl text-left hover:border-indigo-600 transition font-semibold text-slate-700">A. Réparer un objet cassé ou coder une application</button>
-                        <button class="w-full p-4 border-2 border-slate-100 rounded-2xl text-left hover:border-indigo-600 transition font-semibold text-slate-700">B. Lire, écrire ou débattre sur des sujets de société</button>
-                        <button class="w-full p-4 border-2 border-slate-100 rounded-2xl text-left hover:border-indigo-600 transition font-semibold text-slate-700">C. Prendre soin des animaux ou cultiver des plantes</button>
-                        <button class="w-full p-4 border-2 border-slate-100 rounded-2xl text-left hover:border-indigo-600 transition font-semibold text-slate-700">D. Organiser un petit commerce ou gérer un budget</button>
-                    </div>
-
-                    <div class="mt-12 pt-8 border-t border-slate-50">
-                        <p class="text-xs text-slate-400 italic font-bold">Le test complet arrive bientôt !</p>
-                    </div>
-                </div>
-            </div>`;
-        }
-
-        // Init
-        showView('home');
-    </script>
 </body>
 </html>
