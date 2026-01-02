@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 Sitemap: https://nouessedo.github.io/Apres-mon-bac/sitemap.xml
-3.  *Favicon* : Ajoutez une image carrée nommée favicon.ico pour que l'onglet du navigateur affiche le logo (les armoiries du Bénin par exemple).
+
+# Additional notes for Google Search Console and Adsense compatibility
+# Ensure favicon.ico is added for better site recognition
